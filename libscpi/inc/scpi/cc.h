@@ -66,7 +66,7 @@ extern "C" {
     #define HAVE_STRNLEN 1
 #endif
 
-#if (defined _BSD_SOURCE && _BSD_SOURCE) || \
+#if (defined _BSD_SOURCE) || \
     (defined _XOPEN_SOURCE  && _XOPEN_SOURCE >= 500) || \
     (defined _ISOC99_SOURCE && _ISOC99_SOURCE) || \
     (defined _POSIX_C_SOURCE && _POSIX_C_SOURCE >= 200112L) || \
@@ -78,7 +78,7 @@ extern "C" {
     #define HAVE_STRNCASECMP 1
 #endif
 
-#if (defined _BSD_SOURCE && _BSD_SOURCE) || \
+#if (defined _BSD_SOURCE) || \
     (defined _SVID_SOURCE && _SVID_SOURCE) || \
     (defined _XOPEN_SOURCE && _XOPEN_SOURCE) || \
     (defined _ISOC99_SOURCE && _ISOC99_SOURCE) || \
@@ -96,7 +96,7 @@ extern "C" {
 #endif
 
 #if (defined _XOPEN_SOURCE && XOPEN_SOURCE >= 600) || \
-    (defined _BSD_SOURCE && _BSD_SOURCE) || \
+    (defined _BSD_SOURCE) || \
     (defined _SVID_SOURCE && _SVID_SOURCE) || \
     (defined _ISOC99_SOURCE && _ISOC99_SOURCE) || \
     (defined _POSIX_C_SOURCE && _POSIX_C_SOURCE >= 200112L)
