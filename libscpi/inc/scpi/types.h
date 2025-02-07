@@ -426,6 +426,7 @@ extern "C" {
         scpi_write_control_t control;
         scpi_command_callback_t flush;
         scpi_command_callback_t reset;
+        scpi_bool_t always_reply_numbers_in_base_10;
 #if USE_RUN_TIME_SCPI_LINE_ENDING
         const char * line_ending;
 #endif

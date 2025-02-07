@@ -406,8 +406,13 @@ static size_t resultUInt32BaseSign(scpi_t * context, uint32_t val, int8_t base, 
     size_t result = 0;
     size_t len;
 
-    len = UInt32ToStrBaseSign(val, buffer, sizeof (buffer), base, sign);
-    basePrefix = getBasePrefix(base);
+    int8_t base_final = base;
+    if (context->interface->always_reply_numbers_in_base_10) {
+        base_final = 10;
+    }
+
+    len = UInt32ToStrBaseSign(val, buffer, sizeof (buffer), base_final, sign);
+    basePrefix = getBasePrefix(base_final);
 
     result += writeDelimiter(context);
     if (basePrefix != NULL) {
@@ -432,8 +437,13 @@ static size_t resultUInt64BaseSign(scpi_t * context, uint64_t val, int8_t base, 
     size_t result = 0;
     size_t len;
 
-    len = UInt64ToStrBaseSign(val, buffer, sizeof (buffer), base, sign);
-    basePrefix = getBasePrefix(base);
+    int8_t base_final = base;
+    if (context->interface->always_reply_numbers_in_base_10) {
+        base_final = 10;
+    }
+    
+    len = UInt64ToStrBaseSign(val, buffer, sizeof (buffer), base_final, sign);
+    basePrefix = getBasePrefix(base_final);
 
     result += writeDelimiter(context);
     if (basePrefix != NULL) {
@@ -462,7 +472,11 @@ size_t SCPI_ResultInt32(scpi_t * context, int32_t val) {
  * @return
  */
 size_t SCPI_ResultUInt32Base(scpi_t * context, uint32_t val, int8_t base) {
-    return resultUInt32BaseSign(context, val, base, FALSE);
+    int8_t base_final = base;
+    if (context->interface->always_reply_numbers_in_base_10) {
+        base_final = 10;
+    }
+    return resultUInt32BaseSign(context, val, base_final, FALSE);
 }
 
 /**
@@ -482,7 +496,11 @@ size_t SCPI_ResultInt64(scpi_t * context, int64_t val) {
  * @return
  */
 size_t SCPI_ResultUInt64Base(scpi_t * context, uint64_t val, int8_t base) {
-    return resultUInt64BaseSign(context, val, base, FALSE);
+    int8_t base_final = base;
+    if (context->interface->always_reply_numbers_in_base_10) {
+        base_final = 10;
+    }
+    return resultUInt64BaseSign(context, val, base_final, FALSE);
 }
 
 /**
